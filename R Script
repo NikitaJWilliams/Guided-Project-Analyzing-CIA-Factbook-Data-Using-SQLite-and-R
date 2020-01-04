@@ -27,5 +27,5 @@ create_histogram <- function (x,y)  {
  histograms <- map(demographics,create_histogram)
  do.call("grid.arrange",c(histograms,ncol = 2))
  
- query_6 <- "Select name country_or_independent_territory from facts ORDER BY cast(population as float)/cast(area_land as float) DESC LIMIT 10"
+ query_6 <- "Select name country_or_dependent_territory from facts ORDER BY cast(population as float)/cast(area_land as float) DESC LIMIT 10"
  result_6 <- dbGetQuery(conn, query_6)
