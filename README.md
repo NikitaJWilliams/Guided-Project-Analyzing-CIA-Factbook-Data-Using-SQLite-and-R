@@ -31,13 +31,15 @@ In the next few lines of code, I perform a query to extract the first five obser
 query_1 <- "SELECT* from facts limit 5"
 result_1 <- dbGetQuery(conn,query_1)
 ```
-The *facts* table reports primary geographical information about each country in the world. Let's go ahead and find the minimum and maximum values in each of the *population* and *population_growth* columns. 
+The *facts* table records primary geographical information about each country in the world. Let's go ahead and find the minimum and maximum values in each of the *population* and *population_growth* columns. 
 
 ```
 query_2 <- "select MIN(population), MAX(population), MIN(population_growth), MAX(population_growth) from facts"
 result_2 <- dbGetQuery(conn, query_2)
 ```
-When we take a glance at the output, there are two values which come across as fabricated: MAX(population) and MIN(population). We can operate a query to trace the smallest and largest population values to the countries that they belong to. 
+When we take a glance at the output, there are two values which come across as fabricated: MAX(population) and MIN(population). The *factbook* database reports the smallest national population to be 0 and the largest national population to be around 7.2 billion. 
+
+We can operate a query to trace the smallest and largest population values to the countries that they belong to. 
 
 ```
 query_3 <- "Select* from facts where population = (Select MIN(population) from facts)"
