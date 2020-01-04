@@ -31,19 +31,25 @@ In the next few lines of code, I perform a query to extract the first five obser
 query_1 <- "SELECT* from facts limit 5"
 result_1 <- dbGetQuery(conn,query_1)
 ```
-The *facts* table contains geographical information for each country in the world. Let's go ahead and find the minimum and maximum values of the *population* and *population_growth* variables. 
+The *facts* table contains primary geographical information about each country in the world. Let's go ahead and find the minimum and maximum values in each of the *population* and *population_growth* columns. 
 
 ```
 query_2 <- "select MIN(population), MAX(population), MIN(population_growth), MAX(population_growth) from facts"
 result_2 <- dbGetQuery(conn, query_2)
 ```
-Text
+If we take a glance at the output, there are two values. We can operate a query to trace the values to the countries that they belong to. 
+
 ```
 query_3 <- "Select* from facts where population = (Select MIN(population) from facts)"
 result_3 <- dbGetQuery(conn,query_3)
 
 query_4 <- "Select* from facts where population = (Select MAX(population) from facts)"
 result_4 <- dbGetQuery(conn,query_4)
+```
+Text
+```
+query_5 <- "select population,population_growth,birth_rate,death_rate from facts where population!= (Select MIN(population) from facts) and population!= (Select MAX(population) from facts)"
+result_5 <- dbGetQuery(conn, query_5)
 ```
 ## Reference
 [Access the data here](https://github.com/factbook/factbook.sql/releases)
