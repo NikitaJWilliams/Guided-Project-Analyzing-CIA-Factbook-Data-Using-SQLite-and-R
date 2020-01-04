@@ -68,7 +68,9 @@ create_histogram <- function (x,y)  {
 ![](https://i.ibb.co/3vbQtnX/Rplot.png)
 
 
-The upper left histogram shows that the population ll
+The upper left histogram shows that population falls far below 500 million for the vast majority of the countries around the world. On the other hand, the distribution of the population growth variable is skewed right: its mean is larger than its median value. A typical country grows in population at the rate of about 1.5%. Similarly, the distribution of *birth_rate* is positively skewed as well. An average country experiences approximately 20 births per 1,000 people in a year. Finally, *death_rate* roughy follows a normal distribution: its mean is approximately of the same value as its median. A common *death_rate* is about 9. 
+
+To conclude my project, I run a query to return a list of top 10 countries(or dependent territories) by population density. Population density is the ratio of population to land area. 
 ```
 query_6 <- "Select name country_or_dependent_territory from facts ORDER BY cast(population as float)/cast(area_land as float) DESC LIMIT 10"
 result_6 <- dbGetQuery(conn, query_6)
