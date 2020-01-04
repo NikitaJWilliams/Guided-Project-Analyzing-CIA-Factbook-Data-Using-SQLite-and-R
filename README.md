@@ -37,9 +37,9 @@ The *facts* table records primary geographical information about each country in
 query_2 <- "select MIN(population), MAX(population), MIN(population_growth), MAX(population_growth) from facts"
 result_2 <- dbGetQuery(conn, query_2)
 ```
-When we take a glance at the output, there are two values which come across as fabricated: MAX(population) and MIN(population). The *factbook* database reports the smallest national population to be 0 and the largest national population to be around 7.2 billion. 
+When we take a glance at the output, there are two values which come across as fabricated: MAX(population) and MIN(population). The *factbook* database reports the smallest national population to be 0 and the largest national population to be around 7.2 billion. Common knowledge tells us that none of the countries on the planet can possibly meet such a criteria. 
 
-We can operate a query to trace the smallest and largest population values to the countries that they belong to. 
+We can operate a query to trace the source of the problem. 
 
 ```
 query_3 <- "Select* from facts where population = (Select MIN(population) from facts)"
