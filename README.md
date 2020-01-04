@@ -48,10 +48,11 @@ result_3 <- dbGetQuery(conn,query_3)
 query_4 <- "Select* from facts where population = (Select MAX(population) from facts)"
 result_4 <- dbGetQuery(conn,query_4)
 ```
-Text
+It turns out that the CIA World Factbook includes Antarctica and Earth as part of its observations. Antarctica and Earth are outliers and in this case, we can exclude them as to not skew the distribution of our data. 
 ```
 query_5 <- "select population,population_growth,birth_rate,death_rate from facts where population!= (Select MIN(population) from facts) and population!= (Select MAX(population) from facts)"
 result_5 <- dbGetQuery(conn, query_5)
 ```
+
 ## Reference
 [Access the data here](https://github.com/factbook/factbook.sql/releases)
